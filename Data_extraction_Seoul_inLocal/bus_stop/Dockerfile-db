@@ -1,0 +1,9 @@
+FROM mysql:5.7 
+
+ENV MYSQL_ALLOW_EMPTY_PASSWORD true
+ENV MYSQL_DATABASE bus_stop
+EXPOSE 3306
+
+COPY bus_stop_db /var/lib/mysql
+
+CMD ["mysqld"]
