@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  market_db:
+    image: cony56/market_db:1.2
+    container_name: "market_db"
+    ports:
+      - "13306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_DATABASE: mysql
+    networks:
+      - market
+  market_api:
+    image: cony56/marketapi:2.0
+    container_name: "market_api"
+    ports:
+      - "2000:2000"
+    networks:
+      - market
+
+networks:
+  market:
+    driver: bridge
+

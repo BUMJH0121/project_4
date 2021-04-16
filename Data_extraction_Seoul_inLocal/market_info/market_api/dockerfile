@@ -1,0 +1,17 @@
+FROM python:latest
+
+RUN pip install PublicDataReader
+RUN pip install pandas
+RUN pip install pymysql
+RUN pip install sqlalchemy
+RUN pip install requests
+RUN pip install bs4
+RUN pip install html5lib
+RUN pip install lxml
+RUN mkdir /market_api
+
+COPY ./marketsearch.py ./market_api/marketsearch.py
+
+WORKDIR /market_api
+#CMD ["python", "marketsearch.py"]
+CMD ["tail","-f","/dev/null"]
