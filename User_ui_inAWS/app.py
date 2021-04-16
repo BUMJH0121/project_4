@@ -5,9 +5,13 @@ import json
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods = ['GET', 'POST'])
 def home():
-    return 'Hello, my second site!'
+    temp = ""
+    if request.method == 'POST':
+        temp = request.data
+        print(type(temp), temp)
+    return 'Hello, my second site! {}'.format(temp)
 
 @app.route('/data')
 def get_data():

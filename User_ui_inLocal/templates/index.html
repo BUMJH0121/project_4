@@ -64,16 +64,40 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
   <form action="\" method="post" class="input-form">
     <div class="w3-row-padding">
     <div class="w3-col m3">
-        <label><i class="region"></i> 지역(동)</label>
-        <input class="w3-input w3-border" type="text" name='region'>
+        <label><i class="region"></i> (필수)지역(구)</label>
+        <!-- <input class="w3-input w3-border" type="text" name='region'> -->
+        <select class="w3-input w3-border" required>
+          {% for data in region_json_gu %}
+            <option>{{ data }}</option>
+          {% endfor %}
+        </select>
     </div>
     <div class="w3-col m3">
-        <label><i class="service"></i> 업종</label>
-        <input class="w3-input w3-border" type="text" name='service'>
+        <label><i class="region"></i> (필수)지역(동)</label>
+        <!-- <input class="w3-input w3-border" type="text" name='region'> -->
+        <select class="w3-input w3-border" required>
+          {% for data in region_json_dong %}
+            <option>{{ data }}</option>
+          {% endfor %}
+        </select>
+    </div>
+    <!-- <div class="w3-col m3">
+        <label><i class="service"></i> (필수)업종</label> -->
+        <!-- <input class="w3-input w3-border" type="text" name='service'> -->
+        <!-- <select class="w3-input w3-border" required>
+          {% for data in service_json %}
+            <option>{{ data.name }}</option>
+          {% endfor %}
+        </select>
     </div>
     <div class="w3-col m2">
-        <label><i class="year"></i> 년도</label>
-        <input class="w3-input w3-border" type="number" placeholder="ex)2020" name='year'>
+        <label><i class="year"></i> (선택)년도</label> -->
+        <!-- <input class="w3-input w3-border" type="number" placeholder="ex)2020" name='year'> -->
+        <!-- <select class="w3-input w3-border" required>
+          {% for data in year_json %}
+            <option>{{ data.name }}</option>
+          {% endfor %}
+        </select> -->
     </div>
     <div class="w3-col m2">
         <label><i class="fa fa-search"></i> Search</label>

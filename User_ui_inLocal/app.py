@@ -2,16 +2,32 @@ from flask import Flask, request, render_template, jsonify
 import requests
 from pymongo import MongoClient
 import json
-from bson.json_util import dumps
+import csv
 
 app = Flask(__name__)
+region_name_gu = []
+region_name_dong = []
+with open('./region_name_gu.csv', newline='') as f:
+    reader = csv.reader(f)
+    region_name_gu = list(reader)
+
+with open('./region_name_dong.csv', newline='') as f:
+    reader = csv.reader(f)
+    region_name_dong = list(reader)
+
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
-        value = request.form
-        print(value['region'], value['service'], value['year'])
-    return render_template('index.html')
+        value = json.dumps(request.form.to_dict(flat=False))
+        print(type(value), value)
+        requests.post("http://127.0.0.1:26030/", data = value)
+
+    print(json.dumps(region_name_dong[0], ensure_ascii=False).split(','))
+    # print()
+    # print(region_name_gu)
+    return render_template('index.html', region_json_gu= {"1" : "1"}, region_json_dong= {"2", "2"})
+    # service_json=, year_json=
 
 # @app.route('/data')
 # def get_data():
