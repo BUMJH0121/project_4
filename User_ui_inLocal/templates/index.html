@@ -80,7 +80,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
         <label><i class="region_dong"></i> (필수)지역(동)</label>
         <!-- <input class="w3-input w3-border" type="text" name='region'> -->
         <select id ="region_dong" class="w3-input w3-border" required>
-        
+          {% for data in region_json_dong['중구'] %}
+            <option>{{data}}</option>
+          {% endfor %}
         </select>
     </div>
     <!-- <div class="w3-col m3">
