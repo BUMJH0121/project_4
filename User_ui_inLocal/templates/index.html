@@ -9,6 +9,9 @@
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 </style>
+
+
+
 <body class="w3-light-grey">
 
 <!-- Navigation Bar -->
@@ -64,21 +67,24 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
   <form action="\" method="post" class="input-form">
     <div class="w3-row-padding">
     <div class="w3-col m3">
-        <label><i class="region"></i> (필수)지역(구)</label>
+        <label><i class="region_gu"></i> (필수)지역(구)</label>
         <!-- <input class="w3-input w3-border" type="text" name='region'> -->
-        <select class="w3-input w3-border" required>
+        <select id ="region_gu" class="w3-input w3-border" required onchange="itemChange(this)">
           {% for data in region_json_gu %}
             <option>{{ data }}</option>
           {% endfor %}
         </select>
     </div>
     <div class="w3-col m3">
-        <label><i class="region"></i> (필수)지역(동)</label>
+        <label><i class="region_dong"></i> (필수)지역(동)</label>
         <!-- <input class="w3-input w3-border" type="text" name='region'> -->
-        <select class="w3-input w3-border" required>
-          {% for data in region_json_dong %}
-            <option>{{ data }}</option>
-          {% endfor %}
+        <select id ="region_dong" class="w3-input w3-border" required>
+            <script>
+              function itemChange(e){
+                var target = document.getElementById("region_dong");
+                target.option = ["wp"];
+              }
+            </script>>
         </select>
     </div>
     <!-- <div class="w3-col m3">

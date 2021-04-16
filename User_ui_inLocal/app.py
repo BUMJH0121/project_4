@@ -7,14 +7,29 @@ import csv
 app = Flask(__name__)
 region_name_gu = []
 region_name_dong = []
-with open('./region_name_gu.csv', newline='') as f:
+with open('./project_4/region_name_gu.csv', newline='') as f:
     reader = csv.reader(f)
     region_name_gu = list(reader)
 
-with open('./region_name_dong.csv', newline='') as f:
+with open('./project_4/region_name_dong.csv', newline='') as f:
     reader = csv.reader(f)
     region_name_dong = list(reader)
 
+convert_gu = json.dumps(region_name_gu[0], ensure_ascii=False).split(',')
+for i in range(len(convert_gu)):
+    convert_gu[i] = convert_gu[i].replace('"','').replace('[','').replace(']','').strip()
+
+convert_dong = json.dumps(region_name_dong[0], ensure_ascii=False).split(',')
+for i in range(len(convert_dong)):
+    convert_dong[i] = convert_dong[i].replace('"','').replace('[','').replace(']','').strip()
+
+region_dict = {}
+for i in range(424):
+    try:
+        region_dict[convert_gu[i]].append(convert_dong[i])
+    except:
+        temp = [convert_dong[i]]
+        region_dict[convert_gu[i]] = temp
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -22,11 +37,7 @@ def home():
         value = json.dumps(request.form.to_dict(flat=False))
         print(type(value), value)
         requests.post("http://127.0.0.1:26030/", data = value)
-
-    print(json.dumps(region_name_dong[0], ensure_ascii=False).split(','))
-    # print()
-    # print(region_name_gu)
-    return render_template('index.html', region_json_gu= {"1" : "1"}, region_json_dong= {"2", "2"})
+    return render_template('index.html', region_json_gu= set(convert_gu), region_json_dong= region_dict)
     # service_json=, year_json=
 
 # @app.route('/data')
