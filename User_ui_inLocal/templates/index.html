@@ -58,6 +58,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 </header> -->
 
 <!-- Page content -->
+
 <div class="w3-content" style="max-width:1532px;">
 
   <div class="w3-container w3-margin-top" id="rooms">
@@ -79,12 +80,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
         <label><i class="region_dong"></i> (필수)지역(동)</label>
         <!-- <input class="w3-input w3-border" type="text" name='region'> -->
         <select id ="region_dong" class="w3-input w3-border" required>
-            <script>
-              function itemChange(e){
-                var target = document.getElementById("region_dong");
-                target.option = ["wp"];
-              }
-            </script>>
+        
         </select>
     </div>
     <!-- <div class="w3-col m3">
@@ -277,5 +273,22 @@ To use this code on your website, get a free API key from Google.
 Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
 -->
 
+<script>
+  var temp = {{region_json_dong|tojson}};
+  
+  function itemChange(e){
+    var text = e.options[e.selectedIndex].innerHTML;
+    var target = document.getElementById("region_dong");
+    target.options.length = 0;
+    
+    var values = Object.values(temp[text])
+    for(let i =0; i< values.length; i++){
+      var obj = document.createElement("option");
+      obj.text = values[i];
+      obj.value = values[i];
+      target.options.add(obj)
+  }
+  }
+</script>
 </body>
 </html>
