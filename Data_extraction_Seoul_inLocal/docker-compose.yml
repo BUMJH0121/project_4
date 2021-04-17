@@ -1,0 +1,12 @@
+version : '3'
+services : 
+    Mongo : 
+        image : mongo
+        container_name: "Mongo"
+        ports: 
+            - "27017:27017"
+    get-api :
+        image : jin35282/api-get-seoul:1.0
+        ports:
+            - "25000:25000"
+        container_name: "get-api"
