@@ -11,7 +11,7 @@ def home():
     if request.method == 'POST':
         temp = request.data
         print(type(temp), temp)
-    return 'Hello, my second site! {}'.format(temp)
+    return {"name": "temp", "region":"인사동"}
 
 @app.route('/data')
 def get_data():
