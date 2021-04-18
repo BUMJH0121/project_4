@@ -1,6 +1,5 @@
 from flask import Flask, request, render_template, jsonify
 import requests
-from pymongo import MongoClient
 import json
 from data_make_list import *
 
