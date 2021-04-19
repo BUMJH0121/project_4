@@ -4,11 +4,11 @@ import json
 
 region_name_gu = []
 region_name_dong = []
-with open('./region_name_gu.csv', newline='') as f:
+with open('./region_name_gu.csv', 'wb') as f:
     reader = csv.reader(f)
     region_name_gu = list(reader)
 
-with open('./region_name_dong.csv', newline='') as f:
+with open('./region_name_dong.csv', 'wb') as f:
     reader = csv.reader(f)
     region_name_dong = list(reader)
 
