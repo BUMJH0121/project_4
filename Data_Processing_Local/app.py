@@ -1,5 +1,6 @@
-from flask import Flask,jsonify,request
+from flask import Flask,jsonify,request, render_template
 import requests
+import json
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
@@ -32,7 +33,15 @@ def home():
     return jsonify(data)
 
 
+@app.route('/tmp', methods=['POST', 'GET'])
+def tmp():
+    if request.method == 'POST':
+        res_json = json.loads(request.data)
+        print(res_json)
+    value = {"127.0005444": "34.0004558"}
+    return render_template("convert.html", value = value)
+
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)

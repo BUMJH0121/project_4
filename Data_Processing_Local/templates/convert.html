@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>좌표로 주소를 얻어내기</title>
+    <style>
+    .map_wrap {position:relative;width:100%;height:350px;}
+    .title {font-weight:bold;display:block;}
+    .hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
+    #centerAddr {display:block;margin-top:2px;font-weight: normal;}
+    .bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+</style>
+</head>
+<body>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<div class="map_wrap">
+    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+    <div class="hAddr">
+        <span class="title">지도중심기준 행정동 주소정보</span>
+        <span id="centerAddr"></span>
+    </div>
+</div>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=128259f2b46675b25cac4a6807df8d10&libraries=services"></script>
+<script>
+var value = {{value|tojson}}
+var key_value = Object.keys(value)
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
+
+for(var i =0; i<key_value.length; i++){
+    geocoder.coord2RegionCode( key_value[i],value[key_value[i]], displayCenterInfo);         
+}
+
+// 지도 좌측상단에 지도 중심좌표에 대한 주소정보를 표출하는 함수입니다
+function displayCenterInfo(result, status) {
+    if (status === kakao.maps.services.Status.OK) {
+        for(var i = 0; i < result.length; i++) {
+            // 행정동의 region_type 값은 'H' 이므로
+            if (result[i].region_type === 'H') {
+                document.write(result[i].address_name);
+                break;
+            }
+        }
+    }    
+}
+
+var object = {
+    xcode : "123",
+    ycode : "345",
+    gu : "구",
+    dong : "동",
+};
+var object_json = JSON.stringify(object);
+$.ajax({
+    type: 'POST',
+    contentType: 'application/json',
+    url: '/tmp',
+    dataType: 'json',
+    data : object_json,
+    success : function(result){
+        console.log(result);
+    },
+    error : function(result){
+        console.log(result);
+    }
+});
+</script>
+</body>
+</html>
