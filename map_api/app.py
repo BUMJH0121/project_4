@@ -12,11 +12,14 @@ def home():
 def tmp():
     value = {"xcode": 33.450705,
              "ycode": 126.570677}
-
+    
+    ## 예제 데이터 ##
     bus_stop = {"카카오": {"xcode": 33.450705, "ycode": 126.570677},
                 "생태연못": {"xcode": 33.450936, "ycode": 126.569477},
                 "텃밭": {"xcode": 33.450879, "ycode": 126.56994},
                 "근린공원": {"xcode": 33.451393, "ycode": 126.570738}}
+    ######
+            
     return render_template('index3.html', value=value, bus_stop=bus_stop)
 
 
