@@ -5,15 +5,15 @@ import json
 region_name_gu = []
 region_name_dong = []
 service_name = []
-with open('./region_name_gu.csv', newline='') as f:
+with open('./region_name_gu.csv', newline='', encoding='cp949') as f:
     reader = csv.reader(f)
     region_name_gu = list(reader)
 
-with open('./region_name_dong.csv', newline='') as f:
+with open('./region_name_dong.csv', newline='', encoding='cp949') as f:
     reader = csv.reader(f)
     region_name_dong = list(reader)
 
-with open('./service_name_big.csv', newline='') as f:
+with open('./service_name_big.csv', newline='', encoding='cp949') as f:
     reader = csv.reader(f)
     service_name_all = list(reader)
     for a in service_name_all:
