@@ -1,0 +1,13 @@
+<div class="print">Xcode = {{value['xcode']}}를 전달받았습니다.</div>
+<div class="print">{{value}}를 전달받았습니다.</div>
+<div class="print">{{bus_stop}}를 전달받았습니다.</div>
+
+<html>
+<head></head>
+<body>
+    <script>
+      var value = {{bus_stop|tojson}} ;
+      console.log({{bus_stop}})
+    <script>
+</body>
+</html>
