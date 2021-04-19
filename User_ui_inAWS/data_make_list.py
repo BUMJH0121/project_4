@@ -5,21 +5,21 @@ import json
 region_name_gu = []
 region_name_dong = []
 service_name = []
-with open('./region_name_gu.csv', newline='', encoding='cp949') as f:
+with open('./region_name_gu.csv', newline='') as f:
     reader = csv.reader(f)
     region_name_gu = list(reader)
 
-with open('./region_name_dong.csv', newline='', encoding='cp949') as f:
+with open('./region_name_dong.csv', newline='') as f:
     reader = csv.reader(f)
     region_name_dong = list(reader)
 
-with open('./User_ui_inLocal/service_name_big.csv', newline='') as f:
+with open('./service_name_big.csv', newline='') as f:
     reader = csv.reader(f)
     service_name_all = list(reader)
     for a in service_name_all:
         service_name.append(a[3])
-        service_name = set(service_name)
-        service_name.remove("업종중분류명")
+    service_name.remove("업종중분류명")
+    service_name = set(service_name)
 
 convert_gu = json.dumps(region_name_gu[0], ensure_ascii=False).split(',')
 for i in range(len(convert_gu)):

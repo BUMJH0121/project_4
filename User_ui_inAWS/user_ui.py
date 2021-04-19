@@ -14,7 +14,7 @@ def home():
         res = requests.get("http://54.156.131.155:5000/temp")
         data = json.loads(res.text)
         return render_template('result.html', data = data)
-    return render_template('index.html', region_json_gu= set(convert_gu), region_json_dong= region_dict)
+    return render_template('index.html', region_json_gu= set(convert_gu), region_json_dong= region_dict, service_json= service_name)
     # service_json=, year_json=
 
 # @app.route('/data')
