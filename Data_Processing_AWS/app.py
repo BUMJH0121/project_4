@@ -52,8 +52,7 @@ def user_input():
 @app.route('/data/bus_location', methods=['GET', 'POST'])
 def index():
     url = "http://18.206.167.14:20000/data/mysql"
-
-    # url으로 제공되는 json을 dataframe으로 저장
+    
     bus_df = pd.read_json(url)
     xcode = np.array(bus_df['xcode'].tolist())
     ycode = np.array(bus_df['ycode'].tolist())
