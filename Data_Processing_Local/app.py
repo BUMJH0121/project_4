@@ -38,7 +38,8 @@ def tmp():
     if request.method == 'POST':
         res_json = json.loads(request.data)
         print(res_json)
-    value = {"127.0005444": "34.0004558"}
+    res = requests.get('http://54.156.131.155:5000/data/bus_location')
+    print(type(res.text), res.text)
     return render_template("convert.html", value = value)
 
 
