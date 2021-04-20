@@ -2,8 +2,10 @@ from flask import Flask,jsonify,request, render_template
 import requests
 import json
 
+
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
+bus_stop
 
 @app.route('/')
 def index():
@@ -38,9 +40,11 @@ def tmp():
     if request.method == 'POST':
         res_json = json.loads(request.data)
         print(res_json)
-    res = requests.get('http://54.156.131.155:5000/data/bus_location')
-    print(type(res.text), res.text)
-    return render_template("convert.html", value = value)
+    # res = requests.get('http://54.156.131.155:5000/data/bus_location')
+    # res_json = json.loads(res.text)
+    temp = {"1":{"xcode":127.1285487091,"ycode":37.5533184173}, "2":{"xcode":127.1285487091, "ycode":37.5533184176}}
+    print(temp)
+    return render_template("convert.html", value = temp)
 
 
 
