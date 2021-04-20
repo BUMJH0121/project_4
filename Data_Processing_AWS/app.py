@@ -50,9 +50,9 @@ def user_input():
     return res_json
 
 @app.route('/data/bus_location', methods=['GET', 'POST'])
-def index():
+def bus_stop():
     url = "http://18.206.167.14:20000/data/mysql"
-    
+
     bus_df = pd.read_json(url)
     xcode = np.array(bus_df['xcode'].tolist())
     ycode = np.array(bus_df['ycode'].tolist())
