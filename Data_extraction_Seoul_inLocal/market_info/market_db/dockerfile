@@ -1,4 +1,4 @@
-FROM cony56/market_db:1.1
+FROM cony56/market_db:1.2
 
 ADD ./data /var/lib/mysql
 
