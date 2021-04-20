@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
-        value = json.dumps(request.form.to_dict(flat=False))
+        value = json.dumps(request.form.to_dict(flat=False), ensure_ascii=False).encode('utf-8')
         res =requests.post("http://54.156.131.155:5000/user_input", data = value)
         data = json.loads(res.text)
         return render_template('result.html', data = data)

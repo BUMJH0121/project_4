@@ -70,7 +70,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     <div class="w3-col m3">
         <label><i class="region_gu"></i>지역(구)</label>
         <!-- <input class="w3-input w3-border" type="text" name='region'> -->
-        <select id ="region_gu" class="w3-input w3-border" required onchange="itemChange(this)">
+        <select id ="region_gu" name="region_gu" class="w3-input w3-border" required onchange="itemChange(this)">
           {% for data in region_json_gu %}
             <option>{{ data }}</option>
           {% endfor %}
@@ -79,14 +79,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     <div class="w3-col m3">
         <label><i class="region_dong"></i>지역(동)</label>
         <!-- <input class="w3-input w3-border" type="text" name='region'> -->
-        <select id ="region_dong" class="w3-input w3-border" required>
+        <select id ="region_dong" name="region_dong" class="w3-input w3-border" required>
           <option>구를 먼저 선택해 주세요</option>
         </select>
     </div>
     <div class="w3-col m3">
         <label><i class="service"></i>업종</label>
         <!-- <input class="w3-input w3-border" type="text" name='service'> -->
-        <select class="w3-input w3-border" required>
+        <select name="service" class="w3-input w3-border" required>
           {% for data in service_json %}
             <option>{{ data }}</option>
           {% endfor %}

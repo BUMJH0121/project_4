@@ -9,7 +9,7 @@ app = Flask(__name__)
 def home():
     temp = ""
     if request.method == 'POST':
-        temp = request.data
+        temp = json.loads(request.data)
         print(type(temp), temp)
     return {"name": "temp", "region":"인사동"}
 

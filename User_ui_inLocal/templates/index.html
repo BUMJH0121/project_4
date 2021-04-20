@@ -65,28 +65,28 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     <h3>상권분석</h3>
   </div>
   
-  <form action="\" method="post" class="input-form">
+  <form action="http://127.0.0.1:5000/" method="post" class="input-form">
     <div class="w3-row-padding">
     <div class="w3-col m3">
-        <label><i class="region_gu"></i>지역(구)</label>
+        <label>지역(구)</label>
         <!-- <input class="w3-input w3-border" type="text" name='region'> -->
-        <select id ="region_gu" class="w3-input w3-border" required onchange="itemChange(this)">
+        <select id ="region_gu" name = "region_gu" class="w3-input w3-border" required onchange="itemChange(this)">
           {% for data in region_json_gu %}
             <option>{{ data }}</option>
           {% endfor %}
         </select>
     </div>
     <div class="w3-col m3">
-        <label><i class="region_dong"></i>지역(동)</label>
+        <label>지역(동)</label>
         <!-- <input class="w3-input w3-border" type="text" name='region'> -->
-        <select id ="region_dong" class="w3-input w3-border" required>
+        <select id ="region_dong" name = "region_dong" class="w3-input w3-border" required>
           <option>구를 먼저 선택해 주세요</option>
         </select>
     </div>
     <div class="w3-col m3">
-        <label><i class="service"></i>업종</label>
+        <label>업종</label>
         <!-- <input class="w3-input w3-border" type="text" name='service'> -->
-        <select class="w3-input w3-border" required>
+        <select id ="service" name = "service" class="w3-input w3-border" required>
           {% for data in service_json %}
             <option>{{ data }}</option>
           {% endfor %}
@@ -104,7 +104,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     <!-- </div> -->
     <div class="w3-col m2">
         <label><i class="fa fa-search"></i> Search</label>
-        <button class="w3-button w3-block w3-black">Search</button>
+        <button type= "submit" class = "w3-button w3-block w3-black">Search</button>
     </div>
     </div>
   </form>
