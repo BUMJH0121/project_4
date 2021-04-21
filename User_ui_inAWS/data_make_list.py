@@ -9,7 +9,7 @@ service_name = []
 
 with open('./dong_coords.json', 'r', encoding='utf-8') as f:
     region = json.load(f)
-
+print(region, type(region))
 len_region = len(region)
 for d in region:
     region_name_gu.append(d["gu"])
