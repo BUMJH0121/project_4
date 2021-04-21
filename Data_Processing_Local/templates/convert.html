@@ -26,42 +26,52 @@
 var value = {{value|tojson}};
 var key_value = Object.keys(value);
 // 주소-좌표 변환 객체를 생성합니다
+var temp = new Object();
 var geocoder = new kakao.maps.services.Geocoder();
-for(var i =0; i<key_value.length; i++){
-    geocoder.coord2RegionCode( value[key_value[0]]["xcode"],value[key_value[0]]["ycode"], displayCenterInfo);      
-}
-// 지도 좌측상단에 지도 중심좌표에 대한 주소정보를 표출하는 함수입니다
-function displayCenterInfo(result, status) {
-    if (status === kakao.maps.services.Status.OK) {
-        for(var i = 0; i < result.length; i++) {
-            // 행정동의 region_type 값은 'H' 이므로
-            if (result[i].region_type === 'H') {
-                t = result[i].address_name.split(" ");
-                var o = new Object();
-                o["xcode"] = "{"+value[key_value[0]]["xcode"]+"}";
-                o["ycode"] = "{"+value[key_value[0]]["ycode"]+"}";
-                o["gu"] = t[1];
-                o["dong"] = t[2];
-                break;
-            }
-        }
-    }    
-}
-
-var object_json = JSON.stringify(o);
-$.ajax({
-    type: 'POST',
-    contentType: 'application/json',
-    url: '/tmp',
-    dataType: 'json',
-    data : object_json,
-    success : function(result){
-        console.log(result);
-    },
-    error : function(result){
-        console.log(result);
+var count = 0;
+function DataProcessing(){
+    for(var i =0; i<key_value.length; i++){
+        geocoder.coord2RegionCode(value[key_value[count]]["xcode"],value[key_value[count]]["ycode"], displayCenterInfo);      
     }
-});
+    // 지도 좌측상단에 지도 중심좌표에 대한 주소정보를 표출하는 함수입니다
+    function displayCenterInfo(result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+            for(var i = 0; i < result.length; i++) {
+                // 행정동의 region_type 값은 'H' 이므로
+                if (result[i].region_type === 'H') {
+                    t = result[i].address_name.split(" ");
+                    var o = new Object();
+                    o["xcode"] = value[key_value[count]]["xcode"];
+                    o["ycode"] = value[key_value[count]]["ycode"];
+                    o["gu"] = t[1];
+                    o["dong"] = t[2];
+                    temp[String(count)] = JSON.stringify(o);
+                    count = count +1;
+                    if(Object.keys(temp).length === key_value.length)
+                    {postData();}
+                    break;
+                }
+            }
+        }    
+    }
+}
+DataProcessing();
+function postData(){
+        var object_json = JSON.stringify(temp)
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json',
+            url: '/tmp',
+            dataType: 'json',
+            data : object_json,
+            success : function(result){
+                console.log(result);
+            },
+            error : function(result){
+                console.log(result);
+            }
+        });
+}
 
 </script>
 </body>
