@@ -9,10 +9,9 @@
 
     <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=128259f2b46675b25cac4a6807df8d10"></script>
     <script>
-      var value = {{value|tojson}} ;
       var mapContainer = document.getElementById("map"), // 지도를 표시할 div
         mapOption = {
-          center: new kakao.maps.LatLng({{value['xcode']}}, {{value['ycode']}}), // 지도의 중심좌표
+          center: new kakao.maps.LatLng(33.450705, 126.570677), // 지도의 중심좌표
           level: 5, // 지도의 확대 레벨
           mapTypeId: kakao.maps.MapTypeId.ROADMAP, // 지도종류
         };
