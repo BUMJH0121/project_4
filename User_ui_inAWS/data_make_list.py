@@ -3,6 +3,7 @@ import csv
 import json
 import requests
 import pandas as pd
+import numpy as np
 
 region = []
 region_name_gu = []
