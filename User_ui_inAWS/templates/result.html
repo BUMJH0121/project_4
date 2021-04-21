@@ -32,7 +32,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     var map = new kakao.maps.Map(mapContainer, mapOption);
 
       // 마커가 표시될 위치입니다
-    var markerPosition = new kakao.maps.LatLng(37.56682, 126.97865);
+    var markerPosition = new kakao.maps.LatLng(data["lat"], data["lng"]);
 
       // 마커를 생성합니다
     var marker = new kakao.maps.Marker({
@@ -44,7 +44,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 
     var iwContent =
         '<div style="padding:5px;">찾으시는 위치 <br><a href="https://map.kakao.com/link/map/Hello World!,37.56682, 126.97865" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-      iwPosition = new kakao.maps.LatLng(37.56682, 126.97865); //인포윈도우 표시 위치입니다
+      iwPosition = new kakao.maps.LatLng(data["lat"], data["lng"]); //인포윈도우 표시 위치입니다
 
       // 인포윈도우를 생성합니다
     var infowindow = new kakao.maps.InfoWindow({
