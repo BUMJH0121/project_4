@@ -9,13 +9,12 @@ service_name = []
 
 with open('./dong_coords.json', 'r', encoding='utf-8') as f:
     region = json.load(f)
-print(region, type(region))
 len_region = len(region)
 for d in region:
     region_name_gu.append(d["gu"])
     region_name_dong.append(d["dong"])
 
-with open('./service_name_big.csv', newline='') as f:
+with open('./service_name_small.csv', newline='') as f:
     reader = csv.reader(f)
     service_name_all = list(reader)
     for a in service_name_all:
