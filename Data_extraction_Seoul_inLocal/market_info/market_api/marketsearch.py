@@ -2,6 +2,7 @@ import PublicDataReader as pdr
 import pandas as pd
 import pymysql
 from sqlalchemy import create_engine
+import sys
 
 pymysql.install_as_MySQLdb()
 
@@ -20,7 +21,8 @@ semas = pdr.StoreInfo(serviceKey)
 #divId = input("시도:ctprvnCd, 시군구:signguCd, 행정동:adongCd")
 divId = "adongCd"
 #key = '1168063000'
-key = input("ex) 1168063000: ")
+# key = input("ex) 1168063000: ")
+key = sys.argv[1]
 indsLclsCd = 'Q'
 pageNo = 1
 

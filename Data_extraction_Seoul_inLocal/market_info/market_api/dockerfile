@@ -10,8 +10,12 @@ RUN pip install html5lib
 RUN pip install lxml
 RUN mkdir /market_api
 
+ENV CODE 1168063000
+
 COPY ./marketsearch.py ./market_api/marketsearch.py
 
 WORKDIR /market_api
-#CMD ["python", "marketsearch.py"]
-CMD ["tail","-f","/dev/null"]
+
+#CMD [""]
+CMD ["sh", "-c", "python marketsearch.py ${CODE}"]
+#CMD ["tail","-f","/dev/null"]
