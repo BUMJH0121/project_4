@@ -40,7 +40,7 @@ def tmp():
         bus_to_json = json.loads(request.data)
         with open('test.json', 'w', encoding='utf-8') as file:
             json.dump(bus_to_json, file, ensure_ascii=False) 
-    res = requests.get('http://54.156.131.155:5000/data/bus_location')
+    res = requests.get('http://34.227.101.182:5000/data/bus_location')
     res_json = json.loads(res.text)
     return render_template("convert.html", value = res_json)
 
