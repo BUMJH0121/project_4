@@ -40,7 +40,7 @@ def tmp():
     if request.method == 'POST':
         res_json = json.loads(request.data)
         print(res_json)
-    data = requests.get('http://34.227.101.182:5000/data/bus_location')
+    data = requests.get('http://52.73.176.237:5000/data/bus_location')
     return render_template("convert.html", value = jsonify(data))
 
 @app.route('/user_input', methods=['POST'])
