@@ -72,6 +72,8 @@ def user_input():
         for i in range(len(stop_nm)):
             output[stop_nm[i]] = {"xcode": ycode[i], "ycode": xcode[i]}
         d_records["bus_stop"] = output
+        print(d_records, type(d_records))
+        print(json.dumps(d_records, ensure_ascii=False))
     return json.dumps(d_records, ensure_ascii=False)
 
 # @app.route('/data/bus_location', methods=['GET', 'POST'])
