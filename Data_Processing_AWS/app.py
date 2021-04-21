@@ -47,7 +47,11 @@ def tmp():
 def user_input():
     if request.method == 'POST':
         res_json = json.loads(request.data)
-    return res_json
+        data = df[(df['gu'] == f'{res_json["region_gu"][0]}') & (df['dong'] == f'{res_json["region_dong"][0]}')][['lat', 'lng', 'code']]
+        d_records = data.to_dict('records')[0]
+        d_records['region_gu'] = res_json["region_gu"][0]
+        d_records['region_dong'] = res_json["region_dong"][0]
+    return json.dumps(d_records, ensure_ascii=False)
 
 @app.route('/data/bus_location', methods=['GET', 'POST'])
 def bus_stop():

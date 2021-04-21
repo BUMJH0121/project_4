@@ -11,7 +11,7 @@ def home():
     if request.method == 'POST':
         temp = json.loads(request.data)
         print(type(temp), temp)
-    return {"name": "temp", "region":"인사동"}
+    return temp
 
 @app.route('/data')
 def get_data():
