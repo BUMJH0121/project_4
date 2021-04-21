@@ -62,7 +62,6 @@ def user_input():
         with open("./test.json", "r", encoding="utf-8") as f:
             ddata = json.load(f)
         bus_stop_df = pd.DataFrame(ddata)
-
         data = bus_stop_df[(bus_stop_df['gu'] == f'{res_json["region_gu"][0]}') & (bus_stop_df['dong'] == f'{res_json["region_dong"][0]}')][['xcode', 'ycode']]
         output_df = pd.merge(bus_df, data, on=['xcode', 'ycode'])
         stop_nm = np.array(output_df['stop_nm'].tolist())
@@ -72,8 +71,6 @@ def user_input():
         for i in range(len(stop_nm)):
             output[stop_nm[i]] = {"xcode": ycode[i], "ycode": xcode[i]}
         d_records["bus_stop"] = output
-        print(d_records, type(d_records))
-        print(json.dumps(d_records, ensure_ascii=False))
     return json.dumps(d_records, ensure_ascii=False)
 
 # @app.route('/data/bus_location', methods=['GET', 'POST'])
