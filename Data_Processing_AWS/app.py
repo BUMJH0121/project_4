@@ -1,6 +1,7 @@
 from flask import Flask,jsonify,request, render_template
 import requests
 import json
+import ujson
 import pandas as pd
 import numpy as np
 
