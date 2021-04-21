@@ -5,6 +5,10 @@ import ujson
 import pandas as pd
 import numpy as np
 
+with open("dong_coords.json", "r", encoding="utf-8") as f:
+    ddata = json.load(f) 
+df = pd.DataFrame(ddata)
+
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
 
