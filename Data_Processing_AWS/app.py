@@ -61,9 +61,9 @@ def user_input():
         bus_df = pd.read_json(url)
         with open("./test.json", "r", encoding="utf-8") as f:
             ddata = json.load(f)
-        df = pd.DataFrame(ddata)
+        bus_stop_df = pd.DataFrame(ddata)
 
-        data = df[(df['gu'] == f'{res_json["region_gu"][0]}') & (df['dong'] == f'{res_json["region_dong"][0]}')][['xcode', 'ycode']]
+        data = bus_stop_df[(bus_stop_df['gu'] == f'{res_json["region_gu"][0]}') & (bus_stop_df['dong'] == f'{res_json["region_dong"][0]}')][['xcode', 'ycode']]
         output_df = pd.merge(bus_df, data, on=['xcode', 'ycode'])
         stop_nm = np.array(output_df['stop_nm'].tolist())
         xcode = np.array(output_df['xcode'].tolist())
