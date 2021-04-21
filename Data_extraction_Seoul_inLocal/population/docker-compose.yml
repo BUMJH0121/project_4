@@ -9,7 +9,7 @@ services:
         networks:
             - nw
     population:
-        image: mementohaeri/population:1.0
+        image: mementohaeri/population:1.1
         container_name: "api_population"
         ports: 
             - "20700:20700"
