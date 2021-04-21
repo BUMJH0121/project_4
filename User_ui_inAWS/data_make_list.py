@@ -2,8 +2,7 @@
 import csv
 import json
 import requests
-import pandas as pd
-import numpy as np
+
 
 region = []
 region_name_gu = []
@@ -43,20 +42,5 @@ for i in range(len_region):
 
 region_name_gu = set(region_name_gu)
 
-url = "http://18.206.167.14:20000/data/mysql"
-bus_df = pd.read_json(url)
-with open("./test.json", "r", encoding="utf-8") as f:
-        ddata = json.load(f)
-df = pd.DataFrame(ddata)
 
-data = df[(df['gu'] == f'{x}') & (df['dong'] == f'{y}')][['xcode', 'ycode']]
-output_df = pd.merge(bus_df, data, on=['xcode', 'ycode'])
-stop_nm = np.array(output_df['stop_nm'].tolist())
-xcode = np.array(output_df['xcode'].tolist())
-ycode = np.array(output_df['ycode'].tolist())
-output = {}
-for i in range(len(stop_nm)):
-    output[stop_nm[i]] = {"xcode": ycode[i], "ycode": xcode[i]}
-bus_stop = output
-print(bus_stop)
 

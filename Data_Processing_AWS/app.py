@@ -56,20 +56,36 @@ def user_input():
         d_records = data.to_dict('records')[0]
         d_records['region_gu'] = res_json["region_gu"][0]
         d_records['region_dong'] = res_json["region_dong"][0]
+
+        url = "http://18.206.167.14:20000/data/mysql"
+        bus_df = pd.read_json(url)
+        with open("./test.json", "r", encoding="utf-8") as f:
+            ddata = json.load(f)
+        df = pd.DataFrame(ddata)
+
+        data = df[(df['gu'] == f'{}') & (df['dong'] == f'{y}')][['xcode', 'ycode']]
+        output_df = pd.merge(bus_df, data, on=['xcode', 'ycode'])
+        stop_nm = np.array(output_df['stop_nm'].tolist())
+        xcode = np.array(output_df['xcode'].tolist())
+        ycode = np.array(output_df['ycode'].tolist())
+        output = {}
+        for i in range(len(stop_nm)):
+            output[stop_nm[i]] = {"xcode": ycode[i], "ycode": xcode[i]}
+        d_records["bus_stop"] = output
     return json.dumps(d_records, ensure_ascii=False)
 
-@app.route('/data/bus_location', methods=['GET', 'POST'])
-def bus_stop():
-    url = "http://18.206.167.14:20000/data/mysql"
+# @app.route('/data/bus_location', methods=['GET', 'POST'])
+# def bus_stop():
+#     url = "http://18.206.167.14:20000/data/mysql"
 
-    bus_df = pd.read_json(url)
-    xcode = np.array(bus_df['xcode'].tolist())
-    ycode = np.array(bus_df['ycode'].tolist())
-    location = {}
-    for i in range(len(xcode)):
-        location[i] = {"xcode": xcode[i],
-                    "ycode": ycode[i]}
-    return jsonify(location)
+#     bus_df = pd.read_json(url)
+#     xcode = np.array(bus_df['xcode'].tolist())
+#     ycode = np.array(bus_df['ycode'].tolist())
+#     location = {}
+#     for i in range(len(xcode)):
+#         location[i] = {"xcode": xcode[i],
+#                     "ycode": ycode[i]}
+#     return jsonify(location)
 
 
 
