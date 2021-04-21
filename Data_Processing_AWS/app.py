@@ -63,7 +63,7 @@ def user_input():
             ddata = json.load(f)
         df = pd.DataFrame(ddata)
 
-        data = df[(df['gu'] == f'{}') & (df['dong'] == f'{y}')][['xcode', 'ycode']]
+        data = df[(df['gu'] == f'{res_json["region_gu"][0]}') & (df['dong'] == f'{res_json["region_dong"][0]}')][['xcode', 'ycode']]
         output_df = pd.merge(bus_df, data, on=['xcode', 'ycode'])
         stop_nm = np.array(output_df['stop_nm'].tolist())
         xcode = np.array(output_df['xcode'].tolist())
