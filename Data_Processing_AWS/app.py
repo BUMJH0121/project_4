@@ -72,7 +72,14 @@ def user_input():
             output[stop_nm[i]] = {"xcode": ycode[i], "ycode": xcode[i]}
         d_records["bus_stop"] = output
 
-        # ----- 사용자 입력에 따른 상권 분석 -----
+        # ----- 사용자 입력에 따른 상권 분석 -----      
+        url3 = 'http://18.206.167.14:20000/data/code_info'
+        res3 = requests.get(url3)
+        data3 = res3.json()
+        code_df = pd.DataFrame(data3)
+        code = code_df[code_df['dong'] == f'res_json["region_dong"][0]']['code'].drop.duplicates()
+
+        requests.post('http://18.206.167.14:20000/user', data = code)
 
         url2 = 'http://18.206.167.14:20000/data/market_info'
         res2 = requests.get(url2)
