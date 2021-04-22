@@ -82,10 +82,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
   <h2>상주인구</h2>
 
 
-  <h2>업종이름 수</h2>
-  {{data.service}}
+  <h2>경쟁 업종</h2>
   {% for i in data.service %}
-    <div>{{data.service[i]}}</div>
+    <div>{{data.service[i]['store_name']}} : {{data.service[i]['address']}}</div>
   {% endfor %}
 <!-- Navigation Bar -->
 <!-- <div class="w3-bar w3-white w3-large">

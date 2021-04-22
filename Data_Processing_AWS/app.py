@@ -83,7 +83,6 @@ def user_input():
         output2_df = df2[(df2['adongNm'] == f'{res_json["region_dong"][0]}') & (
             df2['indsMclsNm'] == f'{res_json["service"][0]}')][['bizesNm', 'lnoAdr']]
 
-        print(output2_df)
         store_name = np.array(output2_df['bizesNm'].tolist())
         address = np.array(output2_df['lnoAdr'].tolist())
         output2 = []
