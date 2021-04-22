@@ -92,7 +92,7 @@ def user_input():
                             "address": address[i]})
 
         d_records["service"] = output2
-
+        print(d_records["service"], type(d_records["service"]))
     return json.dumps(d_records, ensure_ascii=False)
 
 #@app.route('/data/bus_location', methods=['GET', 'POST'])
