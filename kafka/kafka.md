@@ -67,8 +67,6 @@ OpenJDK Runtime Environment (build 11.0.10+9-Ubuntu-0ubuntu1.18.04)
 OpenJDK 64-Bit Server VM (build 11.0.10+9-Ubuntu-0ubuntu1.18.04, mixed mode, sharing)
 ```
 
-<br>
-
 ### 토픽
 
 1. 토픽 생성 
@@ -305,6 +303,26 @@ if __name__ == '__main__' :
 -> <u>인코딩 문제 해결해야 함</u>
 
 ![image](https://user-images.githubusercontent.com/77096463/115520060-b80bc180-a2c4-11eb-9319-7ed85283c9b7.png)
+
+<br>
+
+:warning: **kafka 인스턴스 재시작 시 토픽이 모두 사라지는 경우**
+
+항상 종료할 때 kafka-server -> zookeeper-server 순으로 종료하기
+
+```
+ubuntu@ip-172-31-55-25:~/kafka_2.12-2.5.0$ bin/kafka-server-stop.sh -daemon config/server.properties
+ubuntu@ip-172-31-55-25:~/kafka_2.12-2.5.0$ bin/zookeeper-server-stop.sh -daemon config/zookeeper.properties
+```
+
+<br>
+:warning: botocore.exceptions.NoCredentialsError: Unable to locate credentials 에러 발생
+
+```
+ubuntu@ip-172-31-55-25:~$ sudo vi ~/.aws/credentials
+```
+
+위의 경로에서 aws_access_key_id와 aws_secret_access_key 값 설정
 
 <br>
 
