@@ -73,18 +73,18 @@ def user_input():
         d_records["bus_stop"] = output
     return json.dumps(d_records, ensure_ascii=False)
 
-# @app.route('/data/bus_location', methods=['GET', 'POST'])
-# def bus_stop():
-#     url = "http://18.206.167.14:20000/data/mysql"
+@app.route('/data/bus_location', methods=['GET', 'POST'])
+def bus_stop():
+    url = "http://18.206.167.14:20000/data/mysql"
 
-#     bus_df = pd.read_json(url)
-#     xcode = np.array(bus_df['xcode'].tolist())
-#     ycode = np.array(bus_df['ycode'].tolist())
-#     location = {}
-#     for i in range(len(xcode)):
-#         location[i] = {"xcode": xcode[i],
-#                     "ycode": ycode[i]}
-#     return jsonify(location)
+    bus_df = pd.read_json(url)
+    xcode = np.array(bus_df['xcode'].tolist())
+    ycode = np.array(bus_df['ycode'].tolist())
+    location = {}
+    for i in range(len(xcode)):
+        location[i] = {"xcode": xcode[i],
+                    "ycode": ycode[i]}
+    return jsonify(location)
 
 
 
