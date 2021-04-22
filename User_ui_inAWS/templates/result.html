@@ -82,10 +82,52 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
   <h2>상주인구</h2>
 
 
-  <h2>경쟁 업종</h2>
-  {% for i in data.service %} 
-  <div>{{i['store_name']}} : {{i['address']}}</div>
-  {% endfor %}
+  <html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <title>CSS</title>
+    <style>
+      table {
+        width: 40%;
+        border-top: 1px solid #444444;
+        border-collapse: collapse;
+      }
+      th, td {
+        border-bottom: 1px solid #444444;
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>업소명</th><th>주소</th>
+        </tr>
+      </thead>
+      <tbody>
+        <script type="text/javascript">
+          var data = {{data|tojson}};
+          for(i=0;i<data.service.length;i++)
+          {
+            document.write("<tr>");
+            for(j=0;j<2;j++)
+            {
+              if (j==0)
+              {
+                document.write("<td>"+data.service[i]['store_name']+"</td>");
+              }
+              else
+              {
+                document.write("<td>"+data.service[i]['address']+"</td>");
+              }
+            }
+            document.write("</tr>");
+          }
+        </script>
+      </tbody>
+    </table>
+
 <!-- Navigation Bar -->
 <!-- <div class="w3-bar w3-white w3-large">
   <a href="#" class="w3-bar-item w3-button w3-red w3-mobile"><i class="fa fa-bed w3-margin-right"></i>Logo</a>
