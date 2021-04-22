@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  bus_stop:
+    image: 1yangsh/bus_stop:1.5
+    container_name: "api_get_bus_stop"
+    ports:
+      - "27018:27018"
+    networks:
+      - bus_nw
+  bus_stop_db:
+    image: 1yangsh/bus_stop_db:1.4
+    container_name: "bus_stop_db"
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_DATABASE: bus_stop
+    networks:
+      - bus_nw
+
+networks:
+  bus_nw:
+    driver: bridge
