@@ -45,9 +45,9 @@ def user_input():
         res_json = json.loads(request.data)
         data = df[(df['gu'] == f'{res_json["region_gu"][0]}') & (df['dong'] == f'{res_json["region_dong"][0]}')][['lat', 'lng', 'code']]
         d_records = data.to_dict('records')[0]
+        requests.post('http://localhost:20000/user', data = str(d_records["code"]))
         d_records['region_gu'] = res_json["region_gu"][0]
         d_records['region_dong'] = res_json["region_dong"][0]
-        print(d_records, type(d_records))
     return json.dumps(d_records, ensure_ascii=False)
 
 # @app.route('/tmp', methods=['POST', 'GET'])

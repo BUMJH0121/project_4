@@ -90,6 +90,7 @@ def show():
 @app.route('/user', methods=['POST'])
 def user():
      print(request.data)
+     print(json.loads(request.data), type(json.loads(request.data)))
      return request.data
 
 if __name__ == '__main__':
