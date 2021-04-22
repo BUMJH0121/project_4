@@ -77,9 +77,8 @@ def user_input():
         res3 = requests.get(url3)
         data3 = res3.json()
         code_df = pd.DataFrame(data3)
-        code = code_df[code_df['dong'] == f'res_json["region_dong"][0]']['code'].drop_duplicates()
-
-        requests.post('http://18.206.167.14:20000/user', data = json.dumps(code, ensure_ascii=False))
+        code = code_df[code_df['dong'] == f'{res_json["region_dong"][0]}']['code'].drop_duplicates()
+        requests.post('http://18.206.167.14:20000/user', data = str(code.values[0]))
 
         url2 = 'http://18.206.167.14:20000/data/market_info'
         res2 = requests.get(url2)
