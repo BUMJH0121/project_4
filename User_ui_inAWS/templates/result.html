@@ -15,7 +15,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 <body class="w3-light-grey">
 
 <h1>{{data.region_gu}} {{data.region_dong}}</h1>
-
+<h3>{{data.region_dong}} 근처 정류장</h3>
 <div id="map" style="width: 80%; height: 50vh"></div>
 
   <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=128259f2b46675b25cac4a6807df8d10"></script>
@@ -83,8 +83,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 
 
   <h2>업종이름 수</h2>
+  {{data.service}}
   {% for i in data.service %}
-    {{data.service[i]}}
+    <div>{{data.service[i]}}</div>
   {% endfor %}
 <!-- Navigation Bar -->
 <!-- <div class="w3-bar w3-white w3-large">
