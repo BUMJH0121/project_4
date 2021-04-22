@@ -21,9 +21,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
   <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=128259f2b46675b25cac4a6807df8d10"></script>
   <script>
     var data = {{data|tojson}};
-    console.log(data);
     var bus_stop = data["bus_stop"];
-    console.log(bus_stop, typeof(bus_stop));
     var mapContainer = document.getElementById("map"), // 지도를 표시할 div
     mapOption = {
       center: new kakao.maps.LatLng(data["lat"], data["lng"]), // 지도의 중심좌표
@@ -85,7 +83,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 
 
   <h2>업종이름 수</h2>
-
+console.log({{data.service}}, {{type(data.service)}})
 <!-- Navigation Bar -->
 <!-- <div class="w3-bar w3-white w3-large">
   <a href="#" class="w3-bar-item w3-button w3-red w3-mobile"><i class="fa fa-bed w3-margin-right"></i>Logo</a>

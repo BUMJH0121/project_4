@@ -71,6 +71,28 @@ def user_input():
         for i in range(len(stop_nm)):
             output[stop_nm[i]] = {"xcode": ycode[i], "ycode": xcode[i]}
         d_records["bus_stop"] = output
+
+        # ----- 사용자 입력에 따른 상권 분석 -----
+
+        url2 = 'http://18.206.167.14:20000/data/market_info'
+        res2 = requests.get(url2)
+        data2 = res2.json()
+
+        df2 = pd.DataFrame(data2)
+
+        # 비교 (수정필요)
+        output2_df = df2[(df2['adongNm'] == res_json["region_dong"][0]) & (
+            df2['indsMclsNm'] == res_json["service"][0])][['bizesNm', 'lnoAdr']]
+
+        store_name = np.array(output2_df['bizesNm'].tolist())
+        address = np.array(output2_df['lnoAdr'].tolist())
+        output2 = []
+        for i in range(len(store_name)):
+            output2.append({"store_name": store_name[i],
+                            "address": address[i]})
+
+        d_records["service"] = output2
+
     return json.dumps(d_records, ensure_ascii=False)
 
 #@app.route('/data/bus_location', methods=['GET', 'POST'])
