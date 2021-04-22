@@ -79,11 +79,11 @@ def user_input():
         data2 = res2.json()
 
         df2 = pd.DataFrame(data2)
-
         # 비교 (수정필요)
-        output2_df = df2[(df2['adongNm'] == res_json["region_dong"][0]) & (
-            df2['indsMclsNm'] == res_json["service"][0])][['bizesNm', 'lnoAdr']]
+        output2_df = df2[(df2['adongNm'] == f'{res_json["region_dong"][0]}') & (
+            df2['indsMclsNm'] == f'{res_json["service"][0]}')][['bizesNm', 'lnoAdr']]
 
+        print(output2_df)
         store_name = np.array(output2_df['bizesNm'].tolist())
         address = np.array(output2_df['lnoAdr'].tolist())
         output2 = []
@@ -92,7 +92,6 @@ def user_input():
                             "address": address[i]})
 
         d_records["service"] = output2
-        print(d_records["service"], type(d_records["service"]))
     return json.dumps(d_records, ensure_ascii=False)
 
 #@app.route('/data/bus_location', methods=['GET', 'POST'])
