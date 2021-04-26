@@ -3,7 +3,7 @@ from pymongo import MongoClient
 import json
 from bson.json_util import dumps
 import pymysql
-
+import os
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
@@ -27,9 +27,10 @@ def get():
     collection = db.population_2020
     cursor = collection.find()
     return dumps(cursor, ensure_ascii=False)
+
 @app.route('/data/market_info')
 def show_mk():
-    conn = pymysql.connect(host='127.0.0.1',port=13306, user='root',password='', db='mysql', charset='utf8')
+    conn = pymysql.connect(host='127.0.0.1',port=49156, user='root',password='', db='mysql', charset='utf8')
     sql = ' select * from test'
     cursor = conn.cursor()
     cursor.execute(sql)
@@ -53,6 +54,25 @@ def show_mk():
         data_list.append(data_dic)
     conn.close
     return jsonify(data_list)
+
+@app.route('/data/code_info')
+def get_code():
+    conn = pymysql.connect(host='127.0.0.1',port=49156, user='root',password='', db='mysql', charset='utf8')
+    sql = 'select * from code_data'
+    cursor = conn.cursor()
+    cursor.execute(sql)
+    row = cursor.fetchall()
+    data_list = []
+    for obj in row:
+        data_dic = {
+                'gu':obj[1],
+                'dong':obj[2],
+                'code':obj[3]
+                }
+        data_list.append(data_dic)
+    conn.close
+    return jsonify(data_list)
+
 
 @app.route('/data/mysql')
 def show():
@@ -87,8 +107,10 @@ def show():
 
 @app.route('/user', methods=['POST'])
 def user():
-     print(request.data)
-     return request.data
+    code = json.loads(request.data)
+    os.chdir('/home/ubuntu/project_4_git/project_4/Data_extraction_Seoul_inLocal/market_info')
+    os.system('docker-compose run --rm market_api python marketsearch.py {}'.format(str(code)))
+    return str(code)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=20000, debug=True)
