@@ -18,7 +18,7 @@ app.config['JSON_AS_ASCII'] = False
 #     data = requests.get('http://52.73.176.237:5000/data/bus_location')
 #     return render_template("convert.html", value = jsonify(data))
 
-@app.route('/user_input', methods=['POST'])
+@app.route('/user_input', methods=['POST', 'GET'])
 def user_input():
     if request.method == 'POST':
         res_json = json.loads(request.data)
@@ -72,7 +72,7 @@ def user_input():
             output2.append({"store_name": store_name[i],"address": address[i]})
         d_records["service"] = output2
     return json.dumps(d_records, ensure_ascii=False)
-
+return "OK"
 #@app.route('/data/bus_location', methods=['GET', 'POST'])
 #def bus_stop():
 #    url = "http://18.206.167.14:20000/data/mysql"
