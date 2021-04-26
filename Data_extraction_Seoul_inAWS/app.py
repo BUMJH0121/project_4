@@ -112,7 +112,7 @@ def user():
     os.system('docker-compose run --rm market_api python marketsearch.py {}'.format(str(code)))
     return str(code)
 
-@app.route('healthy')
+@app.route('/healthy')
 def healthy():
     return "200"
 
