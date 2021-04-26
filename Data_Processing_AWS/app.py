@@ -87,7 +87,9 @@ def user_input():
 #                    "ycode": ycode[i]}
 #    return jsonify(location)
 
-
+@app.route('/healthy')
+def healthy():
+    return "200"
 
 
 if __name__ == "__main__":
