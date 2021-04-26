@@ -71,8 +71,9 @@ def user_input():
         for i in range(len(store_name)):
             output2.append({"store_name": store_name[i],"address": address[i]})
         d_records["service"] = output2
-    return json.dumps(d_records, ensure_ascii=False)
-return "OK"
+        return json.dumps(d_records, ensure_ascii=False)
+    elif request.method == 'GET':
+        return "OK"
 #@app.route('/data/bus_location', methods=['GET', 'POST'])
 #def bus_stop():
 #    url = "http://18.206.167.14:20000/data/mysql"
