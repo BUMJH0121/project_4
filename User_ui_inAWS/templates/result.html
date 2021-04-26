@@ -51,17 +51,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       // 마커가 지도 위에 표시되도록 설정합니다
     marker.setMap(map);
 
-    // var iwContent =
-    //     '<div style="padding:5px;">찾으시는 위치 <br><a href="https://map.kakao.com/link/map/Hello World!,37.56682, 126.97865" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-    //   iwPosition = new kakao.maps.LatLng(data["lat"], data["lng"]); //인포윈도우 표시 위치입니다
-
-    //   // 인포윈도우를 생성합니다
-    // var infowindow = new kakao.maps.InfoWindow({
-    //   position: iwPosition,
-    //   content: iwContent,
-    // });
-    //   // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
-    // infowindow.open(map, marker);
     for (var i = 0; i < positions.length; i++) {
         // 마커 이미지의 이미지 크기 입니다
         var imageSize = new kakao.maps.Size(24, 35);
@@ -128,50 +117,5 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       </tbody>
     </table>
 
-<!-- Navigation Bar -->
-<!-- <div class="w3-bar w3-white w3-large">
-  <a href="#" class="w3-bar-item w3-button w3-red w3-mobile"><i class="fa fa-bed w3-margin-right"></i>Logo</a>
-  <a href="#rooms" class="w3-bar-item w3-button w3-mobile">Rooms</a>
-  <a href="#about" class="w3-bar-item w3-button w3-mobile">About</a>
-  <a href="#contact" class="w3-bar-item w3-button w3-mobile">Contact</a>
-  <a href="#contact" class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile">Book Now</a>
-</div> -->
-<!-- Header -->
-<!-- <header class="w3-display-container w3-content" style="max-width:1500px;">
-  <img class="w3-image" src="/w3images/hotel.jpg" alt="The Hotel" style="min-width:1000px" width="1500" height="800">
-  <div class="w3-display-left w3-padding w3-col l6 m8">
-    <div class="w3-container w3-red">
-      <h2><i class="fa fa-bed w3-margin-right"></i>Hotel Name</h2>
-    </div>
-    <div class="w3-container w3-white w3-padding-16">
-      <form action="/action_page.php" target="_blank">
-        <div class="w3-row-padding" style="margin:0 -16px;">
-          <div class="w3-half w3-margin-bottom">
-            <label><i class="fa fa-calendar-o"></i> Check In</label>
-            <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckIn" required>
-          </div>
-          <div class="w3-half">
-            <label><i class="fa fa-calendar-o"></i> Check Out</label>
-            <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required>
-          </div>
-        </div>
-        <div class="w3-row-padding" style="margin:8px -16px;">
-          <div class="w3-half w3-margin-bottom">
-            <label><i class="fa fa-male"></i> Adults</label>
-            <input class="w3-input w3-border" type="number" value="1" name="Adults" min="1" max="6">
-          </div>
-          <div class="w3-half">
-            <label><i class="fa fa-child"></i> Kids</label>
-          <input class="w3-input w3-border" type="number" value="0" name="Kids" min="0" max="6">
-          </div>
-        </div>
-        <button class="w3-button w3-dark-grey" type="submit"><i class="fa fa-search w3-margin-right"></i> Search availability</button>
-      </form>
-    </div>
-  </div>
-</header> -->
-
-<!-- Page content -->
-  
 </body>
 </html>
