@@ -51,7 +51,7 @@ def tmp():
     #             "근린공원": {"xcode": 33.451393, "ycode": 126.570738}}
     ######
 
-    return render_template('index3.html', value=value, bus_stop=bus_stop)
+    return render_template('test.html', value=value, bus_stop=bus_stop)
 
 
 @ app.route('/result', methods=['POST', 'GET'])

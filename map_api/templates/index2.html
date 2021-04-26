@@ -60,3 +60,43 @@
     </script>
   </body>
 </html>
+
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <title>CSS</title>
+    <style>
+      table {
+        width: 40%;
+        border-top: 1px solid #444444;
+        border-collapse: collapse;
+      }
+      th, td {
+        border-bottom: 1px solid #444444;
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>업소명</th><th>주소</th>
+        </tr>
+      </thead>
+      <tbody>
+        <script type="text/javascript">
+          for(i=0;i<3;i++)
+          {
+            document.write("<tr>");
+            for(j=0;j<2;j++)
+            {
+              document.write("<td>"+"헬로"+"</td>");
+            }
+            document.write("</tr>");
+          }
+        </script>
+      </tbody>
+    </table>
+  </body>
+</html>

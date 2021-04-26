@@ -1,13 +1,52 @@
 <div class="print">Xcode = {{value['xcode']}}를 전달받았습니다.</div>
 <div class="print">{{value}}를 전달받았습니다.</div>
-<div class="print">{{bus_stop}}를 전달받았습니다.</div>
+<div class="print">{{bus_stop}}를 전달받았습니다.</div></br>
 
-<html>
-<head></head>
-<body>
-    <script>
-      var value = {{bus_stop|tojson}} ;
-      console.log({{bus_stop}})
-    <script>
-</body>
+
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <title>CSS</title>
+    <style>
+      table {
+        width: 40%;
+        border-top: 1px solid #444444;
+        border-collapse: collapse;
+      }
+      th, td {
+        border-bottom: 1px solid #444444;
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>업소명</th><th>주소</th>
+        </tr>
+      </thead>
+      <tbody>
+        <script type="text/javascript">
+          var data = {{data|tojson}};
+          for(i=0;i<data.service.length;i++)
+          {
+            document.write("<tr>");
+            for(j=0;j<2;j++)
+            {
+              if (j==0)
+              {
+                document.write("<td>"+data.service[i]['store_name']+"</td>");
+              }
+              else
+              {
+                document.write("<td>"+data.service[i]['address']+"</td>");
+              }
+            }
+            document.write("</tr>");
+          }
+        </script>
+      </tbody>
+    </table>
+  </body>
 </html>
