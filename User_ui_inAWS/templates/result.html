@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<title>소상공인화이팅</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
+</style>
+
+
+
+<body class="w3-light-grey">
+
+<h1>{{data.region_gu}} {{data.region_dong}}</h1>
+<h3>{{data.region_dong}} 근처 정류장</h3>
+<div id="map" style="width: 80%; height: 50vh"></div>
+
+  <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=128259f2b46675b25cac4a6807df8d10"></script>
+  <script>
+    var data = {{data|tojson}};
+    var bus_stop = data["bus_stop"];
+    var mapContainer = document.getElementById("map"), // 지도를 표시할 div
+    mapOption = {
+      center: new kakao.maps.LatLng(data["lat"], data["lng"]), // 지도의 중심좌표
+      level: 5, // 지도의 확대 레벨
+      mapTypeId: kakao.maps.MapTypeId.ROADMAP, // 지도종류
+      };
+
+      // 지도를 생성한다
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+    var imageSrc =
+        "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+
+      // 마커가 표시될 위치입니다
+    var markerPosition = new kakao.maps.LatLng(data["lat"], data["lng"]);
+    var positions = []
+      for (var i = 0; i < Object.keys(bus_stop).length; i++) {
+        positions.push({
+          title: Object.keys(bus_stop)[i],
+          latlng: new kakao.maps.LatLng((bus_stop[Object.keys(bus_stop)[i]]['xcode']), (bus_stop[Object.keys(bus_stop)[i]]['ycode']))
+        })
+      }
+      // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+      position: markerPosition,
+      });
+
+      // 마커가 지도 위에 표시되도록 설정합니다
+    marker.setMap(map);
+
+    for (var i = 0; i < positions.length; i++) {
+        // 마커 이미지의 이미지 크기 입니다
+        var imageSize = new kakao.maps.Size(24, 35);
+
+        // 마커 이미지를 생성합니다
+        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+        // 마커를 생성합니다
+        var bus_marker = new kakao.maps.Marker({
+          map: map, // 마커를 표시할 지도
+          position: positions[i].latlng, // 마커를 표시할 위치
+          title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+          image: markerImage, // 마커 이미지
+        });
+      }
+  </script>
+
+  <h2>경쟁업소</h2>
+
+
+  <html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <title>CSS</title>
+    <style>
+      table {
+        width: 40%;
+        border-top: 1px solid #444444;
+        border-collapse: collapse;
+      }
+      th, td {
+        border-bottom: 1px solid #444444;
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>업소명</th><th>주소</th>
+        </tr>
+      </thead>
+      <tbody>
+        <script type="text/javascript">
+          var data = {{data|tojson}};
+          for(i=0;i<data.service.length;i++)
+          {
+            document.write("<tr>");
+            for(j=0;j<2;j++)
+            {
+              if (j==0)
+              {
+                document.write("<td>"+data.service[i]['store_name']+"</td>");
+              }
+              else
+              {
+                document.write("<td>"+data.service[i]['address']+"</td>");
+              }
+            }
+            document.write("</tr>");
+          }
+        </script>
+      </tbody>
+    </table>
+
+</body>
+</html>

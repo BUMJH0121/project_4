@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<title>소상공인화이팅</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
+</style>
+
+
+
+<body class="w3-light-grey">
+
+<div class="w3-content" style="max-width:1532px;">
+
+  <div class="w3-container w3-margin-top" id="rooms">
+    <h3>상권분석</h3>
+  </div>
+  
+  <form action="\" method="post" class="input-form">
+    <div class="w3-row-padding">
+    <div class="w3-col m3">
+        <label><i class="region_gu"></i>지역(구)</label>
+        <select id ="region_gu" name="region_gu" class="w3-input w3-border" required onchange="itemChange(this)">
+          {% for data in region_json_gu %}
+            <option>{{ data }}</option>
+          {% endfor %}
+        </select>
+    </div>
+    <div class="w3-col m3">
+        <label><i class="region_dong"></i>지역(동)</label>
+        <select id ="region_dong" name="region_dong" class="w3-input w3-border" required>
+          <option>구를 먼저 선택해 주세요</option>
+        </select>
+    </div>
+    <div class="w3-col m3">
+        <label><i class="service"></i>업종</label>
+        <select name="service" class="w3-input w3-border" required>
+          {% for data in service_json %}
+            <option>{{ data }}</option>
+          {% endfor %}
+        </select>
+    </div>
+    <div class="w3-col m2">
+        <label><i class="fa fa-search"></i> Search</label>
+        <button class="w3-button w3-block w3-black">Search</button>
+    </div>
+    </div>
+  </form>
+
+</div>
+
+<script>
+  var temp = {{region_json_dong|tojson}};
+  
+  function itemChange(e){
+    var text = e.options[e.selectedIndex].innerHTML;
+    var target = document.getElementById("region_dong");
+    target.options.length = 0;
+    
+    var values = Object.values(temp[text])
+    for(let i =0; i< values.length; i++){
+      var obj = document.createElement("option");
+      obj.text = values[i];
+      obj.value = values[i];
+      target.options.add(obj)
+  }
+  }
+</script>
+</body>
+</html>
