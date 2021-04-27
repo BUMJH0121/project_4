@@ -1,0 +1,20 @@
+version: '3'
+services:
+    mongo:
+        image: mongo
+        container_name: "population_db"
+        restart: always
+        ports:
+            - "27017:27017"
+        networks:
+            - nw
+    population:
+        image: mementohaeri/population:1.1
+        container_name: "api_population"
+        ports: 
+            - "20700:20700"
+        networks:
+            - nw
+networks:
+    nw:
+        driver: bridge
